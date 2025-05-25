@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-15 23:00+0300\n"
+"POT-Creation-Date: 2025-05-25 00:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,56 +17,128 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: templates/courses.html:3
+#: forms.py:16 templates/dashboard.html:10 templates/register.html:21
+msgid "Email"
+msgstr ""
+
+#: forms.py:17 templates/register.html:29
+msgid "Password"
+msgstr ""
+
+#: forms.py:18 templates/layout.html:24 templates/login.html:3
+msgid "Login"
+msgstr ""
+
+#: ajax/enroll.py:10 ajax/enroll.py:32 api/__init__.py:10
+msgid "Please login first."
+msgstr ""
+
+#: ajax/enroll.py:18 ajax/enroll.py:40
+msgid "Course not found."
+msgstr ""
+
+#: ajax/enroll.py:22
+msgid "You are already enrolled in this course."
+msgstr ""
+
+#: ajax/enroll.py:27
+msgid "Successfully enrolled in the course."
+msgstr ""
+
+#: ajax/enroll.py:44
+msgid "You are not enrolled in this course."
+msgstr ""
+
+#: ajax/enroll.py:48
+msgid "Successfully unenrolled from the course."
+msgstr ""
+
+#: templates/courses.html:2
 msgid "Available Courses - LearnHub"
 msgstr ""
 
-#: templates/courses.html:15
+#: templates/courses.html:13
 msgid "Course Title"
 msgstr ""
 
-#: templates/courses.html:16
+#: templates/courses.html:14
 msgid "Description"
 msgstr ""
 
-#: templates/courses.html:17
+#: templates/courses.html:15
 msgid "Actions"
 msgstr ""
 
-#: templates/courses.html:25
+#: templates/courses.html:22
 msgid "Loading"
 msgstr ""
 
-#: templates/courses.html:27
+#: templates/courses.html:24
 msgid "Loading courses"
 msgstr ""
 
-#: templates/courses.html:39
+#: templates/courses.html:36
 msgid "No courses available"
 msgstr ""
 
-#: templates/courses.html:40
+#: templates/courses.html:37
 msgid "Check back later for new courses"
 msgstr ""
 
-#: templates/courses.html:42
+#: templates/courses.html:39
 msgid "Refresh"
 msgstr ""
 
-#: templates/dashboard.html:4 templates/index.html:3
+#: templates/courses.html:47
+msgid "Enroll"
+msgstr ""
+
+#: templates/courses.html:48 templates/dashboard.html:26
+msgid "Unenroll"
+msgstr ""
+
+#: templates/courses.html:49 templates/dashboard.html:47
+msgid "Are you sure you want to unenroll?"
+msgstr ""
+
+#: templates/courses.html:50
+msgid "Error enrolling in course"
+msgstr ""
+
+#: templates/courses.html:51 templates/dashboard.html:48
+msgid "Error unenrolling from course"
+msgstr ""
+
+#: templates/courses.html:52
+msgid "You must be logged in to view courses."
+msgstr ""
+
+#: templates/courses.html:53
+msgid "Error loading courses."
+msgstr ""
+
+#: templates/dashboard.html:2
+msgid "Dashboard - LearnHub"
+msgstr ""
+
+#: templates/dashboard.html:9 templates/index.html:3
 msgid "Welcome"
 msgstr ""
 
-#: templates/dashboard.html:7
+#: templates/dashboard.html:11
+msgid "Logout"
+msgstr ""
+
+#: templates/dashboard.html:16
 msgid "Your Enrolled Courses"
 msgstr ""
 
-#: templates/dashboard.html:17
+#: templates/dashboard.html:36
 msgid "You are not enrolled in any courses yet."
 msgstr ""
 
-#: templates/dashboard.html:20
-msgid "Logout"
+#: templates/dashboard.html:38
+msgid "Browse Courses"
 msgstr ""
 
 #: templates/index.html:7
@@ -116,10 +188,6 @@ msgstr ""
 msgid "Register"
 msgstr ""
 
-#: templates/layout.html:24 templates/login.html:3
-msgid "Login"
-msgstr ""
-
 #: templates/layout.html:27
 msgid "Courses"
 msgstr ""
@@ -136,20 +204,16 @@ msgstr ""
 msgid "Do not have an account?"
 msgstr ""
 
+#: templates/login.html:34
+msgid "Register here"
+msgstr ""
+
 #: templates/register.html:7
 msgid "Create an Account"
 msgstr ""
 
 #: templates/register.html:13
 msgid "Full Name"
-msgstr ""
-
-#: templates/register.html:21
-msgid "Email"
-msgstr ""
-
-#: templates/register.html:29
-msgid "Password"
 msgstr ""
 
 #: templates/register.html:37

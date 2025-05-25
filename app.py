@@ -15,15 +15,14 @@ babel.init_app(app, locale_selector=lambda: session.get('lang') or request.accep
 app.config.from_object(Config)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-def get_locale():
-    if 'language' in session:
-        return session['language']
-    best_match = request.accept_languages.best_match(app.config['LANGUAGES'].keys())
-    return best_match or 'ar'
-
 @app.before_request
 def before_request():
     g.lang = session.get('lang', 'en')
+    g.language_name = app.config['LANGUAGES'].get(g.lang, 'English')
+
+@app.context_processor
+def inject_languages():
+    return dict(languages=app.config['LANGUAGES'])
 
 @app.route('/set_language/<lang_code>')
 def set_language(lang_code):
@@ -52,29 +51,33 @@ def create_tables():
 app.register_blueprint(api_bp, url_prefix='/api')
 app.register_blueprint(ajax_bp, url_prefix='/ajax')
 
-
 @app.before_request
 def session_management():
     session.permanent = True  # Keep the session active until user logs out
 
-
 @app.route('/')
 def index():
     theme = request.cookies.get('theme', 'light')
-    return render_template('index.html', current_theme=theme,languages=app.config['LANGUAGES'])
+    return render_template('index.html', current_theme=theme)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
         student = Student.query.filter_by(email=form.email.data).first()
-        if student and student.check_password(form.password.data):
-            session['user_id'] = student.id
-            flash('Login successful!', 'success')
-            return redirect(url_for('dashboard'))
+        if student:
+            print("تم العثور على المستخدم:", student.email)
+            if student.check_password(form.password.data):
+                print("كلمة المرور صحيحة")
+                session['user_id'] = student.id
+                flash('Login successful!', 'success')
+                return redirect(url_for('dashboard'))
+            else:
+                print("كلمة المرور غير صحيحة")
         else:
-            flash('Invalid email or password', 'danger')
-    return render_template('login.html', form=form,languages=app.config['LANGUAGES'])
+            print("المستخدم غير موجود")
+        flash('Invalid email or password', 'danger')
+    return render_template('login.html', form=form)
 
 @app.route('/dashboard')
 def dashboard():
@@ -85,7 +88,7 @@ def dashboard():
     student = Student.query.get(session['user_id'])
     enrolled_courses = Course.query.join(Enrollment).filter(Enrollment.student_id == student.id).all()
 
-    return render_template('dashboard.html', student=student, courses=enrolled_courses,languages=app.config['LANGUAGES'])
+    return render_template('dashboard.html', student=student, courses=enrolled_courses)
 
 @app.route('/logout')
 def logout():
@@ -99,8 +102,7 @@ def courses():
     if 'user_id' not in session:
         flash("Please login to view courses.", "warning")
         return redirect(url_for('login'))
-    return render_template('courses.html', courses=all_courses,languages=app.config['LANGUAGES'])
-
+    return render_template('courses.html', courses=all_courses)
 
 @app.route('/ajax/enroll', methods=['POST'])
 def enroll():
@@ -133,7 +135,7 @@ def register():
             email=form.email.data,
             name=form.name.data,
         )
-        new_user.set_password(generate_password_hash(form.password.data, method='pbkdf2:sha256'))
+        new_user.set_password(form.password.data)
 
         db.session.add(new_user)
         db.session.commit()
@@ -141,7 +143,7 @@ def register():
         flash('Your account has been created!', 'success')
         return redirect(url_for('login'))
 
-    return render_template('register.html', form=form,languages=app.config['LANGUAGES'])
+    return render_template('register.html', form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)

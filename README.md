@@ -20,7 +20,7 @@ LearnHub is a web-based educational platform built with Flask, designed to allow
 ### Installation
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/Mohammadzaza93/Student-Course-Portal-Python-Flask.git
+   git clone git clone https://github.com/MhmSdd/learnhub.git
    cd learnhub
    ```
 

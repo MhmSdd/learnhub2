@@ -24,15 +24,15 @@
 
 /* الثيم الداكن */
 [data-theme="dark"] {
-    --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --card-bg: #1e1e1e;
-    --border-color: #333;
+    --bg-color: #161515;
+    --text-color: #ebe6e6;
+    --card-bg: #676363;
+    --border-color: #7a7777;
     --primary-color: #6c8af0;
     --secondary-color: #ffca28;
     --accent-color: #adb5bd;
-    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.2);
-    --shadow-dark: 0 6px 20px rgba(0, 0, 0, 0.3);
+    --shadow-light: 0 4px 12px rgba(136, 131, 131, 0.2);
+    --shadow-dark: 0 6px 20px rgba(124, 118, 118, 0.28);
 }
 
 /* إعدادات HTML وBody */
@@ -445,3 +445,16 @@ footer a:hover {
     padding: 2rem;
     box-shadow: var(--shadow-light);
 }
+
+[data-theme="dark"] .navbar .nav-link {
+    color: var(--text-color) !important;
+}
+
+.navbar .nav-link {
+    color: var(--text-color) !important;
+}
+
+.navbar .nav-link:hover {
+    color: var(--secondary-color) !important;
+}
+
